@@ -41,10 +41,10 @@ class Enemy extends mainGame {
         }
         
         //handle collision enemy with player with pythagoras theorem  
-        let xAxis = player.x - this.x
-        let yAxis = player.y - this.y   
+        let xAxis = player.x - this.x;
+        let yAxis = player.y - this.y;   
 
-        let distance = Math.sqrt( xAxis*xAxis + yAxis*yAxis)
+        let distance = Math.sqrt( xAxis*xAxis + yAxis*yAxis);
         if (Math.round(distance) <= 60) {
             player.x = 303;
             player.y = 373.5;
@@ -53,8 +53,7 @@ class Enemy extends mainGame {
             calculateLives(lifeNum);
         }
     }
-
-};
+}
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -73,8 +72,8 @@ class Player extends mainGame {
     update() {
         //set player to initial position when he reach the grass
         if (this.y == -41.5){
-            this.x = 303
-            this.y = 373.5        
+            this.x = 303;
+            this.y = 373.5 ;       
 
             increaseScore();        
 
@@ -84,17 +83,16 @@ class Player extends mainGame {
 
     handleInput(key) {
         if (key === 'left' && player.x > 0) {
-            this.x = this.x - 101
+            this.x = this.x - 101;
         } else if (key === 'right' && player.x < 606) {
             this.x = this.x + 101;
         } else if (key === 'up' && player.y > -41.5) {
             this.y = this.y - 83;
         } else if (key === 'down' && player.y < 373.5) {
             this.y =this.y + 83;      
-        }  
-             
+        }          
     }
-};
+}
 
 
 // Now instantiate your objects.
@@ -107,7 +105,7 @@ const enemy2 = new Enemy(0, 214, 250);
 const enemy3 = new Enemy(101, 131, 300);
 const enemy4 = new Enemy(101, 48, 350);
 
-let allEnemies = [ enemy, enemy1, enemy2, enemy3, enemy4 ]
+let allEnemies = [ enemy, enemy1, enemy2, enemy3, enemy4 ];
 
 const player = new Player(303, 373.5);
 
@@ -150,7 +148,7 @@ document.getElementById("button").addEventListener('click', function(){
     //reset score panel
     resetScorePanel();
 
-})
+});
 
 function calculateLives(num){
     //lose a life
@@ -167,11 +165,11 @@ function calculateLives(num){
         
         //modal appears
         toggleModal();
-        document.getElementById("modal").querySelector("p").innerHTML = "Your score was " + scoreCounter + " points"
+        document.getElementById("modal").querySelector("p").innerHTML = "Your score was " + scoreCounter + " points";
         
         //enemies stop moving
         for (let i = 0; i < allEnemies.length; i++){
-            allEnemies[i].speed = 0
+            allEnemies[i].speed = 0;
         } 
 
         //player stops moving
@@ -212,13 +210,13 @@ function increaseScore(){
 let level = 1;
 const levelDisplay = document.getElementById("level-counter");
 function levelUp(){
-    if (scoreCounter % 2 == 0){
+    if (scoreCounter % 2 === 0){
         //update level
-        level += 1
+        level += 1;
         levelDisplay.innerHTML = level;
         //increase speed 
         for (let i = 0; i < allEnemies.length; i++){
-            allEnemies[i].speed = allEnemies[i].speed + 100
+            allEnemies[i].speed = allEnemies[i].speed + 100;
         } 
     }
 }
