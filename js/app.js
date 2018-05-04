@@ -1,13 +1,28 @@
 let lifeNum = 3;
-// Enemies our player must avoid
-class Enemy {
-    constructor(x, y, z){
-        // Variables applied to each of our instances go here,
-        // we've provided one for you to get started
-        this.x = x;
-        this.speed = z;    
-        this.y = y;     
 
+//superclass
+class mainGame {
+
+    constructor(x, y){
+    // Variables applied to each of our instances go here,
+        this.x = x;  
+        this.y = y;
+    }
+
+    // Draw the enemy on the screen, required method for game   
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
+// Enemies our player must avoid
+class Enemy extends mainGame {
+    
+    constructor(x, y, speed) {
+        
+        super(x, y, speed);
+        this.speed = speed;     
+            
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
         this.sprite = 'images/enemy-bug.png';
@@ -39,53 +54,43 @@ class Enemy {
         }
     }
 
-    // Draw the enemy on the screen, required method for game   
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-
 };
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
-class Player {
+class Player extends mainGame {
 
-    constructor(){
-        //load the image
-        this.sprite = 'images/char-boy.png';
+    constructor(x,y) {
         
-        //set initial position of player
-        this.x = 303;
-        this.y = 373.5;        
+        super(x,y);
+
+        //load the image
+        this.sprite = 'images/char-boy.png';                
     }
 
     update() {
         //set player to initial position when he reach the grass
-        if (player.y == -41.5){
-            player.x = 303
-            player.y = 373.5        
+        if (this.y == -41.5){
+            this.x = 303
+            this.y = 373.5        
 
             increaseScore();        
 
             levelUp();
         }
     }
-    
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
 
     handleInput(key) {
         if (key === 'left' && player.x > 0) {
-            player.x = player.x - 101
+            this.x = this.x - 101
         } else if (key === 'right' && player.x < 606) {
-            player.x = player.x + 101;
+            this.x = this.x + 101;
         } else if (key === 'up' && player.y > -41.5) {
-            player.y = player.y - 83;
+            this.y = this.y - 83;
         } else if (key === 'down' && player.y < 373.5) {
-            player.y = player.y + 83;      
+            this.y =this.y + 83;      
         }  
              
     }
@@ -104,7 +109,7 @@ const enemy4 = new Enemy(101, 48, 350);
 
 let allEnemies = [ enemy, enemy1, enemy2, enemy3, enemy4 ]
 
-const player = new Player();
+const player = new Player(303, 373.5);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
