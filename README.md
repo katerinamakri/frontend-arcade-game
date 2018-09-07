@@ -19,4 +19,4 @@ In this game you have a Player and Enemies (Bugs). The goal of the player is to 
 - [ ] Allow the user to select the image for the player character before starting the game
 - [ ] Add different scenery depends on the level
 
-![frogger_preview](https://raw.githubusercontent.com/katerinamakri/frontend-nanodegree-arcade-game/master/img/frogger_preview.PNG)
+![frogger_preview](https://raw.githubusercontent.com/katerinamakri/frontend-arcade-game/master/images/frogger_preview.PNG)
